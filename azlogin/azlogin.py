@@ -10,7 +10,6 @@ class TokenHelper(object):
     def __init__(self, client_id, app_id, authority):
         self._app_id = app_id
         self._client_id = client_id
-        adal.oauth2_client.TOKEN_RESPONSE_MAP = {'resource': 'resource', 'access_token': 'accessToken', 'error_description': 'errorDescription', 'error': 'error', 'expires_in': 'expiresIn', 'expires_on': 'expiresOn', 'token_type': 'tokenType', 'created_on': 'createdOn', 'refresh_token': 'refreshToken', 'id_token': 'idToken'}
 
         self._cache = self._load_cache()
         self._context = adal.AuthenticationContext(authority, cache=self._cache, api_version=None)
@@ -38,8 +37,8 @@ def main():
 
     helper = TokenHelper(clientId, appId, "https://login.microsoftonline.com/" + tenantId)
     token = helper.get_token_using_device_code()
-    idToken = token["idToken"]
-    subprocess.run(["kubectl", "config", "set-credentials", user, "--token", idToken])
+    accessToken = token["accessToken"]
+    subprocess.run(["kubectl", "config", "set-credentials", user, "--token", accessToken])
 
 if __name__ == "__main__":
     main()
