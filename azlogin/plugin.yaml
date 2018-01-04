@@ -6,7 +6,6 @@ flags:
   - name: "user"
     shorthand: "u"
     desc: "username"
-    defValue: "default"
   - name: "tenant"
     shorthand: "t"
     desc: "Azure AD tenant id"
@@ -16,3 +15,4 @@ flags:
   - name: "clientid"
     shorthand: "c"
     desc: "Azure AD Application that has access to the Kubernetes application"
+    defValue: "28700222-ef32-4a52-a003-5e0ddc134b26"
